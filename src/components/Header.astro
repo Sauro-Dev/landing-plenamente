@@ -2,6 +2,8 @@
 import Mail from "./icons/Mail.astro";
 import Phone from "./icons/Phone.astro";
 import Ubication from "./icons/Ubication.astro";
+import { Image } from "astro:assets";
+import logo from "../assets/logo.png";
 ---
 
 <header
@@ -9,14 +11,19 @@ import Ubication from "./icons/Ubication.astro";
 >
   <div class="container mx-auto flex justify-between items-center">
     <div class="flex items-center space-x-4">
-      <div class="logo-container">
-        <img src="/src/assets/logo.png" alt="PLENA-Mente logo" />
-      </div>
+      <Image
+        src={logo}
+        alt="Logo de PLENAMente"
+        width={80}
+        height={80}
+        quality={"high"}
+        loading="eager"
+      />
       <h1 class="text-white font-light text-3xl tracking-wide">PLENA-Mente</h1>
     </div>
     <nav class="flex space-x-8">
       <div class="flex items-center space-x-2">
-        <Ubication class="text-white w-8 h-8" />
+        <Ubication class="text-white size-8" />
         <div>
           <h2 class="text-white text-lg font-medium">Ubicación:</h2>
           <h3 class="text-white">Huayna Capac 713 Urb. Santa Maria</h3>
@@ -24,7 +31,7 @@ import Ubication from "./icons/Ubication.astro";
       </div>
       <div class="w-px h-15 bg-white mx-4"></div>
       <div class="flex items-center space-x-2">
-        <Mail class="text-white w-8 h-8" />
+        <Mail class="text-white size-8" />
         <div>
           <h2 class="text-white text-lg font-medium">Correo:</h2>
           <h3 class="text-white">plenamentetrujillo@gmail.com</h3>
@@ -32,7 +39,7 @@ import Ubication from "./icons/Ubication.astro";
       </div>
       <div class="w-px h-15 bg-white mx-4"></div>
       <div class="flex items-center space-x-2">
-        <Phone class="text-white w-8 h-8" />
+        <Phone class="text-white size-8" />
         <div>
           <h2 class="text-white text-lg font-medium">Teléfono:</h2>
           <h3 class="text-white">+51 937 562 487</h3>
@@ -41,22 +48,3 @@ import Ubication from "./icons/Ubication.astro";
     </nav>
   </div>
 </header>
-
-<style>
-  .logo-container {
-    margin-top: 10px;
-    height: 90px;
-    width: 100px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .logo-container img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 160%;
-    width: 110%;
-  }
-</style>
