@@ -1,6 +1,7 @@
 ---
-import '@fontsource/poppins';
+import "@fontsource/poppins";
 import Header from "../components/Header.astro";
+import CalltoAction from "../components/CalltoAction.astro";
 
 interface Props {
   title: string;
@@ -20,12 +21,12 @@ const { description, title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title></head
   >
-  <body>
+  <body class="flex flex-col space-y-60 space-x-60">
     <Header />
+    <CalltoAction />
+
     <slot />
-
     <style is:global>
-
       html {
         scroll-behavior: smooth;
       }
@@ -33,7 +34,6 @@ const { description, title } = Astro.props;
       body {
         display: flex;
       }
-
     </style>
   </body>
 </html>
