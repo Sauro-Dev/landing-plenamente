@@ -1,0 +1,80 @@
+---
+import Ubication from "./icons/Ubication.astro";
+import Mail from "./icons/Mail.astro";
+import Phone from "./icons/Phone.astro";
+import { Image } from "astro:assets";
+import logo from "../assets/logo.png";
+import Facebook from "./icons/Facebook.astro";
+import Instagram from "./icons/Instagram.astro";
+import Tiktok from "./icons/Tiktok.astro";
+---
+
+<footer class="bg-blue-800 text-white py-8">
+    <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Columna Izquierda: Redes Sociales -->
+        <div class="flex flex-col items-start space-y-4">
+            <div class="flex items-center space-x-2">
+                <Facebook class="text-white size-6" />
+                <div>
+                    <h2 class="text-white text-lg font-small">PlenaMenteTrujillo</h2>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <Instagram class="text-white size-6" />
+                <div>
+                    <h2 class="text-white text-lg font-small">plenamentetrujillo</h2>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <Tiktok class="text-white size-6" />
+                <div>
+                    <h2 class="text-white text-lg font-small">@plenamentetrujillo</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna Central: Logo y Frase -->
+        <div class="flex flex-col items-center">
+            <Image
+                    src={logo}
+                    alt="Logo de PLENAMente"
+                    width={80}
+                    height={80}
+                    quality={"high"}
+                    loading="eager"
+            />
+            <h2 class="text-lg font-semibold">PLENA-Mente</h2>
+            <p>Psicología Lenguaje</p>
+            <p>Neuro Aprendizaje</p>
+        </div>
+
+        <!-- Columna Derecha: Contacto y Ubicación -->
+        <div class="flex flex-col items-start space-y-4">
+            <div class="flex items-center space-x-2">
+                <Mail class="text-white size-6" />
+                <div>
+                    <h2 class="text-white text-lg font-small">Correo:</h2>
+                    <h3 class="text-white">plenamentetrujillo@gmail.com</h3>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <Phone class="text-white size-6" />
+                <div>
+                    <h2 class="text-white text-lg font-small">Teléfono:</h2>
+                    <h3 class="text-white">+51 937 562 487</h3>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <Ubication class="text-white size-6" />
+                <div>
+                    <h2 class="text-white text-lg font-small">Ubicación:</h2>
+                    <h3 class="text-white">Huayna Capac 713 Urb. Santa Maria</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
