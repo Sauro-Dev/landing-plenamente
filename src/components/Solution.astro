@@ -1,0 +1,42 @@
+---
+import { Image } from "astro:assets";
+import solution from "../assets/solution.jpg";
+import director from "../assets/director.png";
+---
+
+<div class="flex flex-col md:flex-row items-center w-full max-w-7xl mb-20">
+  <Image
+    src={solution}
+    alt="Call to action"
+    quality={"high"}
+    loading="eager"
+    class="md:w-2/5 rounded-3xl shadow-lg"
+  />
+  <aside class="text-center md:text-left ml-28">
+    <h2 class="text-cyan-400 font-semibold text-xl">
+      Psicología Lenguaje y Neuroaprendizaje
+    </h2>
+    <h1 class="text-5xl font-semibold text-gray-900">
+      Te ayudamos a crecer y prosperar
+    </h1>
+    <p class="text-gray-500 mt-1">
+      Ofrecemos terapias integrales y asesoría con orientación familiar para
+      apoyarte en cada paso del camino.
+    </p>
+    <div class="flex items-center">
+      <Image
+        src={director}
+        alt="Call to action"
+        quality={"high"}
+        loading="eager"
+        class="md:w-28 md:h-28 rounded-full border-2 border-blue-800 shadow-lg mt-5"
+      />
+      <div class="flex flex-col ml-4">
+        <h3 class="font-medium">
+          Mg. Milagros del Carmen <br /> Becerra Velazco
+        </h3>
+        <h4 class="text-gray-500">Directora</h4>
+      </div>
+    </div>
+  </aside>
+</div>
