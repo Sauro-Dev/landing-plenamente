@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import CalltoAction from "../components/CalltoAction.astro";
 import Solution from "../components/Solution.astro";
 import Footer from "../components/Footer.astro";
+import Interventions from "../components/Interventions.astro";
 
 interface Props {
   title: string;
@@ -27,6 +28,7 @@ const { description, title } = Astro.props;
     <Header />
     <CalltoAction />
     <Solution />
+    <Interventions />
     <Footer />
     <slot />
     <style is:global>
