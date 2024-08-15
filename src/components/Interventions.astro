@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+import evalPsic from "../assets/evalpsic.jpg";
+import psicIndi from "../assets/psicindi.jpg";
+import psicFami from "../assets/psicfami.jpg";
+import orientacion from "../assets/orientacion.jpg";
+
+const cards = [
+  {
+    title: "Evaluación Psicológica",
+    imageSrc: evalPsic,
+  },
+  {
+    title: "Psicoterapia Individual",
+    imageSrc: psicIndi,
+  },
+  {
+    title: "Psicoterapia Familiar",
+    imageSrc: psicFami,
+  },
+  {
+    title: "Orientación Familiar",
+    imageSrc: orientacion,
+  },
+];
+---
+
+<h1 class="text-4xl font-semibold mb-10">Intervención Especializada</h1>
+
+<ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+  {
+    cards.map((card) => (
+      <li class="link-card">
+        <div class="card-container relative border-2 border-cyan-400 rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div class="image-container relative">
+            <Image
+              src={card.imageSrc}
+              alt={card.title}
+              height={250}
+              width={250}
+              quality="high"
+              loading="lazy"
+              format="jpg"
+              class="w-full h-full object-cover rounded-xl"
+            />
+            <div class="overlay absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center rounded-xl">
+              <h2 class="text-white text-center text-xl font-semibold">
+                {card.title}
+              </h2>
+            </div>
+          </div>
+        </div>
+      </li>
+    ))
+  }
+</ul>
