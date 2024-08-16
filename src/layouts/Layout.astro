@@ -8,7 +8,7 @@ import Footer from "../components/Footer.astro";
 import Interventions from "../components/Interventions.astro";
 import Therapies from "../components/Therapies.astro";
 import PlanCard from "../components/PlanCard.astro";
-import Check from "../components/icons/Check.astro";
+import Team from "../components/Team.astro";
 
 interface Props {
   title: string;
@@ -35,8 +35,8 @@ const { description, title } = Astro.props;
     <Solution />
     <Interventions />
     <Therapies />
+    <Team />
 
-    <!-- Sección de los planes -->
     <section class="py-16">
       <div class="text mb-8">
         <h3 class="text-cyan-400 font-bold text-xl">Nuestros Planes</h3>
