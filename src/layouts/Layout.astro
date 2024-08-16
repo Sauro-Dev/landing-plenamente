@@ -6,12 +6,9 @@ import Solution from "../components/Solution.astro";
 import Ubicanos from "../components/Ubicanos.astro";
 import Footer from "../components/Footer.astro";
 import Interventions from "../components/Interventions.astro";
-<<<<<<< HEAD
 import Therapies from "../components/Therapies.astro";
-=======
 import PlanCard from "../components/PlanCard.astro";
 import Check from "../components/icons/Check.astro";
->>>>>>> 827d356e85601cab4ed04d3ec88743c67acbc57f
 
 interface Props {
   title: string;
@@ -37,10 +34,7 @@ const { description, title } = Astro.props;
     <CalltoAction />
     <Solution />
     <Interventions />
-<<<<<<< HEAD
     <Therapies />
-    
-=======
 
     <!-- Sección de los planes -->
     <section class="py-16">
@@ -79,13 +73,10 @@ const { description, title } = Astro.props;
           sessionsPerMonth="20"
           buttonLink="https://example.com/plan-d"
         />
-        
       </div>
-
     </section>
 
     <Ubicanos />
->>>>>>> 827d356e85601cab4ed04d3ec88743c67acbc57f
     <Footer />
 
     <slot />
