@@ -9,6 +9,7 @@ import Interventions from "../components/Interventions.astro";
 import Therapies from "../components/Therapies.astro";
 import PlanCard from "../components/PlanCard.astro";
 import Team from "../components/Team.astro";
+import Questions from "../components/Questions.astro";
 
 interface Props {
   title: string;
@@ -36,6 +37,7 @@ const { description, title } = Astro.props;
     <Interventions />
     <Therapies />
     <Team />
+    <Questions />
 
     <section class="py-16">
       <div class="text mb-8">
