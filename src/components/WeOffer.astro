@@ -1,0 +1,93 @@
+---
+import { Image } from "astro:assets";
+import ofrecemos from "../assets/ofrecemos.jpg";
+import Compromiso from "./icons/Compromiso.astro";
+import Paciencia from "./icons/Paciencia.astro";
+import Honestidad from "./icons/Honestidad.astro";
+import Respeto from "./icons/Respeto.astro";
+---
+
+<section class="py-16 bg-white">
+  <div class="container mx-auto grid gap-16 md:grid-cols-2 items-center">
+    <!-- Columna Izquierda: "Que ofrecemos" y imagen -->
+    <div class="space-y-4">
+      <h3 class="text-cyan-500 font-bold text-lg">Que ofrecemos</h3>
+      <h2 class="text-4xl font-semibold text-black">El mejor servicio a</h2>
+      <h2 class="text-4xl font-semibold text-black">Nuestros Pacientes</h2>
+      <div class="flex justify-center md:justify-start mt-6">
+        <Image
+          src={ofrecemos}
+          alt="Equipo Plenamente"
+          class="rounded-3xl shadow-lg border-4 border-cyan-400 w-full max-w-sm"
+        />
+      </div>
+    </div>
+
+    <!-- Columna Derecha: Valores -->
+    <div class="grid gap-8 grid-cols-2">
+      <!-- Compromiso -->
+      <div class="flex flex-col items-center text-center">
+        <div
+          class="w-48 h-48 bg-cyan-300 rounded-full flex items-center justify-center shadow-2xl"
+        >
+          <!-- Contenedor del ícono y el texto -->
+          <div class="flex items-center justify-center">
+            <!-- Ícono con margen derecho -->
+            <Compromiso class />
+            <!-- Espaciador manual -->
+            <div class="w-1"></div>
+            <p class="text-xl font-normal text-black">Compromiso</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paciencia -->
+      <div class="flex flex-col items-center text-center">
+        <div
+          class="w-48 h-48 bg-cyan-400 rounded-full flex items-center justify-center shadow-2xl"
+        >
+          <!-- Contenedor del ícono y el texto -->
+          <div class="flex items-center justify-center">
+            <!-- Ícono con margen derecho -->
+            <Paciencia class />
+            <!-- Espaciador manual -->
+            <div class="w-1"></div>
+            <p class="text-xl font-normal text-black">Paciencia</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Honestidad -->
+      <div class="flex flex-col items-center text-center">
+        <div
+          class="w-48 h-48 bg-cyan-400 rounded-full flex items-center justify-center shadow-2xl"
+        >
+          <!-- Contenedor del ícono y el texto -->
+          <div class="flex items-center justify-center">
+            <!-- Ícono con margen derecho -->
+            <Honestidad class="w-10 h-10" />
+            <!-- Espaciador manual -->
+            <div class="w-1"></div>
+            <p class="text-xl font-normal text-black">Honestidad</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Respeto -->
+      <div class="flex flex-col items-center text-center">
+        <div
+          class="w-48 h-48 bg-cyan-300 rounded-full flex items-center justify-center shadow-2xl"
+        >
+          <!-- Contenedor del ícono y el texto -->
+          <div class="flex items-center justify-center">
+            <!-- Ícono con margen derecho -->
+            <Respeto class="w-10 h-10" />
+            <!-- Espaciador manual -->
+            <div class="w-1"></div>
+            <p class="text-xl font-normal text-black">Respeto</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
