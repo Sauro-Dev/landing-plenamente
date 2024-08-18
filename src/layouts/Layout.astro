@@ -3,6 +3,15 @@ import "@fontsource/poppins";
 import Header from "../components/Header.astro";
 import CalltoAction from "../components/CalltoAction.astro";
 import Solution from "../components/Solution.astro";
+import Ubicanos from "../components/Ubicanos.astro";
+import Footer from "../components/Footer.astro";
+import Interventions from "../components/Interventions.astro";
+import Therapies from "../components/Therapies.astro";
+import PlanCard from "../components/PlanCard.astro";
+import Team from "../components/Team.astro";
+import Questions from "../components/Questions.astro";
+import Evidence from "../components/Evidence.astro";
+import WeOffer from "../components/WeOffer.astro";
 
 interface Props {
   title: string;
@@ -24,17 +33,68 @@ const { description, title } = Astro.props;
   >
   <body class="flex flex-col items-center justify-center">
     <Header />
+
     <CalltoAction />
     <Solution />
+    <Interventions />
+    <Therapies />
+    <WeOffer />
+    <Team />
+    <Questions />
+
+    <section class="py-16">
+      <div class="text mb-8">
+        <h3 class="text-cyan-400 font-bold text-xl">Nuestros Planes</h3>
+        <h2 class="text-3xl font-bold text-gray-800">
+          Calidad de servicio a tu alcance
+        </h2>
+      </div>
+
+      <div class="container mx-auto grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <PlanCard
+          planName="Plan A"
+          sessionsPerWeek="1"
+          sessionsPerMonth="4"
+          buttonLink="https://api.whatsapp.com/send?phone=51937562487&text=Hola,%20me%20gustaría%20saber%20más%20sobre%20el%20Plan%20A"
+        />
+
+        <PlanCard
+          planName="Plan B"
+          sessionsPerWeek="2"
+          sessionsPerMonth="8"
+          buttonLink="https://api.whatsapp.com/send?phone=51937562487&text=Hola,%20me%20gustaría%20saber%20más%20sobre%20el%20Plan%20B"
+        />
+
+        <PlanCard
+          planName="Plan C"
+          sessionsPerWeek="3"
+          sessionsPerMonth="12"
+          buttonLink="https://api.whatsapp.com/send?phone=51937562487&text=Hola,%20me%20gustaría%20saber%20más%20sobre%20el%20Plan%20C"
+        />
+
+        <PlanCard
+          planName="Plan D"
+          sessionsPerWeek="5"
+          sessionsPerMonth="20"
+          buttonLink="https://api.whatsapp.com/send?phone=51937562487&text=Hola,%20me%20gustaría%20saber%20más%20sobre%20el%20Plan%20D"
+        />
+      </div>
+    </section>
+
+    <Evidence />
+    <Ubicanos />
+    <Footer />
+
     <slot />
     <style is:global>
-      html {
-        scroll-behavior: smooth;
-      }
-
       body {
         display: flex;
         flex-direction: column;
+        background-image: url("../assets/fondo.jpg");
+        background-repeat: repeat;
+        background-size: auto;
+        background-position: top left;
+        backdrop-filter: blur(5px);
       }
     </style>
   </body>

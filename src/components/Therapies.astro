@@ -1,0 +1,157 @@
+---
+import { Image } from "astro:assets";
+import slide1 from "../assets/atenciont.jpg";
+import slide2 from "../assets/aprendizajet.png";
+import slide3 from "../assets/comunicaciont.png";
+import slide4 from "../assets/conductat.png";
+import slide5 from "../assets/ocupacionalt.png";
+import slide6 from "../assets/asesoriat.jpg";
+import slide7 from "../assets/artet.png";
+
+const slides = [
+  { id: "slide-1", image: slide1, title: "Atención Temprana" },
+  { id: "slide-2", image: slide2, title: "Terapia de aprendizaje" },
+  {
+    id: "slide-3",
+    image: slide3,
+    title: "Terapia de comunicación, lenguaje y habla",
+  },
+  { id: "slide-4", image: slide4, title: "Terapia de conducta" },
+  {
+    id: "slide-5",
+    image: slide5,
+    title: "Terapia ocupacional e integración sensorial",
+  },
+  { id: "slide-6", image: slide6, title: "Asesoría psicopedagógica" },
+  { id: "slide-7", image: slide7, title: "Terapia a través del arte" },
+];
+---
+
+<h1 class="text-4xl font-semibold mb-10 text-center">Terapias Integrales</h1>
+
+<div class="max-w-4xl w-full mb-16">
+  <div id="manual-carousel" class="relative">
+    <div class="overflow-hidden relative h-96 w-full">
+      {
+        slides.map((slide, index) => (
+          <div
+            class={`carousel-slide border-cyan-400 border-4 rounded-3xl overflow-hidden absolute inset-0 transition-opacity duration-700 ${index === 0 ? "opacity-100" : "opacity-0"}`}
+            id={slide.id}
+          >
+            <Image
+              src={slide.image}
+              alt={slide.title}
+              quality="high"
+              loading="lazy"
+              class="block w-full h-full object-cover brightness-50 rounded-3xl"
+            />
+            <span class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-2xl font-semibold text-white px-4 py-2 rounded-lg">
+              {slide.title}
+            </span>
+          </div>
+        ))
+      }
+    </div>
+
+    <div
+      class="flex absolute bottom-5 left-1/2 z-30 space-x-3 -translate-x-1/2"
+    >
+      {
+        slides.map((_, index) => (
+          <button
+            type="button"
+            class={`indicator w-3 h-3 rounded-full ${index === 0 ? "bg-cyan-400" : "bg-gray-300"}`}
+            data-slide-to={index}
+          />
+        ))
+      }
+    </div>
+
+    <button
+      type="button"
+      class="prev-btn absolute top-0 left-0 z-30 px-4 h-full cursor-pointer focus:outline-none"
+    >
+      <span>
+        <svg
+          class="w-6 h-6 text-cyan-400 sm:w-10 sm:h-10"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </span>
+    </button>
+
+    <button
+      type="button"
+      class="next-btn absolute top-0 right-0 z-30 px-4 h-full cursor-pointer focus:outline-none"
+    >
+      <span>
+        <svg
+          class="w-6 h-6 text-cyan-400 sm:w-10 sm:h-10"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"></path>
+        </svg>
+      </span>
+    </button>
+  </div>
+</div>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll(".carousel-slide");
+  const indicators = document.querySelectorAll(".indicator");
+  const nextBtn = document.querySelector(".next-btn");
+  const prevBtn = document.querySelector(".prev-btn");
+
+  function goToSlide(index: number) {
+    slides[currentSlide].classList.remove("opacity-100");
+    slides[currentSlide].classList.add("opacity-0");
+    indicators[currentSlide].classList.remove("bg-cyan-400");
+    indicators[currentSlide].classList.add("bg-gray-300");
+
+    currentSlide = index;
+
+    slides[currentSlide].classList.remove("opacity-0");
+    slides[currentSlide].classList.add("opacity-100");
+    indicators[currentSlide].classList.remove("bg-gray-300");
+    indicators[currentSlide].classList.add("bg-cyan-400");
+  }
+
+  function nextSlide() {
+    const nextSlideIndex = (currentSlide + 1) % slides.length;
+    goToSlide(nextSlideIndex);
+  }
+
+  function prevSlide() {
+    const prevSlideIndex = (currentSlide - 1 + slides.length) % slides.length;
+    goToSlide(prevSlideIndex);
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", nextSlide);
+  }
+  if (prevBtn) {
+    prevBtn.addEventListener("click", prevSlide);
+  }
+
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener("click", () => {
+      goToSlide(index);
+    });
+  });
+</script>

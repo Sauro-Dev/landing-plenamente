@@ -1,0 +1,43 @@
+---
+import { Image } from "astro:assets";
+import ev1 from "../assets/ev1.jpg";
+import ev2 from "../assets/ev2.jpg";
+import ev3 from "../assets/ev3.jpg";
+import ev4 from "../assets/ev4.jpg";
+import ev5 from "../assets/ev5.jpg";
+import ev6 from "../assets/ev6.jpg";
+import ev7 from "../assets/ev7.jpg";
+import ev8 from "../assets/ev8.jpg";
+
+const cards = [
+  { image: ev1 },
+  { image: ev2 },
+  { image: ev3 },
+  { image: ev4 },
+  { image: ev5 },
+  { image: ev6 },
+  { image: ev7 },
+  { image: ev8 },
+];
+---
+
+<h2 class="text-cyan-400 font-medium text-2xl">Nuestro Trabajo</h2>
+<h1 class="font-semibold text-4xl mb-10">Revisa nuestro trabajo</h1>
+
+<div
+  class="max-w-7xl mx-auto w-full mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+>
+  {
+    cards.map((card) => (
+      <div class="flex flex-col items-center">
+        <Image
+          src={card.image}
+          alt=""
+          quality="high"
+          loading="lazy"
+          class="w-full h-full object-cover rounded-3xl border-cyan-400 border-4"
+        />
+      </div>
+    ))
+  }
+</div>
