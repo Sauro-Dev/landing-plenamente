@@ -13,29 +13,44 @@ import Tiktok from "./icons/Tiktok.astro";
   <div
     class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-center justify-items-center"
   >
-    <!-- Columna Izquierda: Redes Sociales -->
-    <div class="flex flex-col space-y-4">
-      <div class="flex items-center space-x-2">
-        <Facebook class="text-white size-6" />
-        <div>
-          <h2 class="text-white text-lg font-small">PlenaMenteTrujillo</h2>
-        </div>
-      </div>
-
-      <div class="flex items-center space-x-2">
-        <Instagram class="text-white size-6" />
-        <div>
-          <h2 class="text-white text-lg font-small">plenamentetrujillo</h2>
-        </div>
-      </div>
-
-      <div class="flex items-center space-x-2">
-        <Tiktok class="text-white size-6" />
-        <div>
-          <h2 class="text-white text-lg font-small">@plenamentetrujillo</h2>
-        </div>
-      </div>
+ <!-- Columna Izquierda: Redes Sociales -->
+<div class="flex flex-col space-y-4">
+  <a 
+    href="https://www.facebook.com/PlenaMenteTrujillo" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    class="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+  >
+    <Facebook class="text-white size-6" />
+    <div>
+      <h2 class="text-white text-lg font-small">PlenaMenteTrujillo</h2>
     </div>
+  </a>
+
+  <a 
+    href="https://www.instagram.com/plenamentetrujillo" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    class="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+  >
+    <Instagram class="text-white size-6" />
+    <div>
+      <h2 class="text-white text-lg font-small">plenamentetrujillo</h2>
+    </div>
+  </a>
+
+  <a 
+    href="https://www.tiktok.com/@plenamentetrujillo" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    class="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+  >
+    <Tiktok class="text-white size-6" />
+    <div>
+      <h2 class="text-white text-lg font-small">@plenamentetrujillo</h2>
+    </div>
+  </a>
+</div>
 
     <!-- Columna Central: Logo y Frase -->
     <div class="flex flex-col items-center">
