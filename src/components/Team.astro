@@ -4,40 +4,104 @@ import arleen from "../assets/arleen.webp";
 import rosa from "../assets/rosa.webp";
 import ronny from "../assets/ronny.webp";
 
-const cards = [
-  { image: arleen, name: "Arleen Alexandra Guerrero Salinas" },
-  { image: rosa, name: "Rosa Katherine Diaz Martinez" },
-  { image: ronny, name: "Bryan Ronny Taico Aguilar" },
+// Datos estructurados del equipo
+interface TeamMember {
+  image: ImageMetadata;
+  name: string;
+  role: string;
+  imageAlt: string;
+}
+
+const teamMembers: TeamMember[] = [
+  {
+    image: arleen,
+    name: "Arleen Alexandra Guerrero Salinas",
+    role: "Terapeuta",
+    imageAlt: "Terapeuta Arleen Alexandra"
+  },
+  {
+    image: rosa,
+    name: "Rosa Katherine Diaz Martinez",
+    role: "Terapeuta",
+    imageAlt: "Terapeuta Rosa Katherine"
+  },
+  {
+    image: ronny,
+    name: "Bryan Ronny Taico Aguilar",
+    role: "Terapeuta",
+    imageAlt: "Terapeuta Bryan Ronny"
+  }
 ];
 ---
 
 <section class="py-16">
-  <div class="text-center mb-10">
-    <h2 class="text-cyan-400 font-medium text-xl sm:text-2xl">Conoce</h2>
-    <h1 class="font-semibold text-3xl sm:text-4xl">Nuestro equipo</h1>
-  </div>
+  <div class="container mx-auto max-w-7xl px-4">
+    {/* Encabezado */}
+    <div class="text-center mb-12">
+      <h2 class="text-cyan-400 font-medium text-xl sm:text-2xl mb-2">
+        Conoce
+      </h2>
+      <h3 class="font-semibold text-3xl sm:text-4xl">
+        Nuestro equipo
+      </h3>
+    </div>
 
-  <div
-    class="max-w-6xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-4 sm:px-6 lg:px-8"
-  >
-    {
-      cards.map((card) => (
-        <div class="flex flex-col items-center">
-          <Image
-            src={card.image}
-            alt={card.name}
-            quality="high"
-            loading="lazy"
-            class="w-full h-auto object-cover rounded-3xl border-cyan-400 border-4"
-          />
-          <h3 class="mt-4 text-lg sm:text-xl font-semibold text-center">
-            {card.name}
-          </h3>
-          <h4 class="text-cyan-400 font-medium text-base sm:text-lg text-center">
-            Terapeuta
-          </h4>
+    {/* Grid de miembros del equipo */}
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10"
+    >
+      {teamMembers.map((member) => (
+        <div 
+          class="flex flex-col items-center transform transition duration-300 hover:scale-[1.02]"
+        >
+          <div class="w-full aspect-[3/4] rounded-3xl overflow-hidden border-4 border-cyan-400">
+            <Image
+              src={member.image}
+              alt={member.imageAlt}
+              width={400}
+              height={533}
+              quality={90}
+              loading="eager"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="mt-4 text-center">
+            <h4 class="text-lg sm:text-xl font-semibold">
+              {member.name}
+            </h4>
+            <p class="text-cyan-400 font-medium text-base sm:text-lg mt-1">
+              {member.role}
+            </p>
+          </div>
         </div>
-      ))
-    }
+      ))}
+    </div>
   </div>
 </section>
+
+<style>
+  /* Optimizaciones de rendimiento */
+  @media (prefers-reduced-motion: reduce) {
+    .transform {
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* Optimización de imágenes */
+  img {
+    content-visibility: auto;
+    contain-intrinsic-size: 400px 533px;
+  }
+
+  /* Prevenir CLS */
+  .aspect-[3/4] {
+    aspect-ratio: 3/4;
+  }
+
+  /* Mejorar rendimiento de transformaciones */
+  .transform {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+</style>

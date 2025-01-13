@@ -1,9 +1,36 @@
 ---
+import { Image } from "astro:assets";
 import Mail from "./icons/Mail.astro";
 import Phone from "./icons/Phone.astro";
 import Ubication from "./icons/Ubication.astro";
-import { Image } from "astro:assets";
 import logo from "../assets/logo.webp";
+
+// Datos estáticos
+type ContactInfo = {
+  location: string;
+  email: string;
+  phone: string;
+}
+
+const contactInfo: ContactInfo = {
+  location: "Huayna Capac 713 Urb. Santa Maria",
+  email: "plenamentetrujillo@gmail.com",
+  phone: "+51 937 562 487"
+};
+
+// Definición de componentes para el menú
+type MenuItemProps = {
+  icon: typeof Mail | typeof Phone | typeof Ubication;
+  title: string;
+  info: string;
+  className?: string;
+}
+
+const menuItems: MenuItemProps[] = [
+  { icon: Ubication, title: "Ubicación", info: contactInfo.location },
+  { icon: Mail, title: "Correo", info: contactInfo.email },
+  { icon: Phone, title: "Teléfono", info: contactInfo.phone }
+];
 ---
 
 <header
@@ -17,95 +44,92 @@ import logo from "../assets/logo.webp";
         alt="Logo de PLENAMente"
         width={60}
         height={60}
-        quality={"high"}
-        loading="lazy"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
       />
       <h1 class="text-white font-light text-xl md:text-3xl tracking-wide">
         PLENA-Mente
       </h1>
     </div>
 
-    <!-- Menú móvil controlado por Alpine.js -->
+    <!-- Menú móvil -->
     <div x-data="{ open: false }" class="lg:hidden">
-      <button @click="open = !open" class="text-white focus:outline-none">
+      <button 
+        @click="open = !open" 
+        class="text-white focus:outline-none"
+        aria-label="Menú"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           class="h-8 w-8"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
+          aria-hidden="true"
         >
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            d="M4 6h16M4 12h16m-7 6h7"></path>
+            d="M4 6h16M4 12h16m-7 6h7"
+          />
         </svg>
       </button>
 
-      <!-- Menú desplegable para móviles -->
+      <!-- Menú móvil desplegable -->
       <nav
         x-show="open"
         @click.away="open = false"
-        x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="opacity-0 transform -translate-y-2"
-        x-transition:enter-end="opacity-100 transform translate-y-0"
-        x-transition:leave="transition ease-in duration-300"
-        x-transition:leave-start="opacity-100 transform translate-y-0"
-        x-transition:leave-end="opacity-0 transform -translate-y-2"
+        x-cloak
         class="absolute top-full left-0 right-0 mt-2 flex flex-col space-y-3 bg-blue-700 rounded-lg p-4 z-20 w-full"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 -translate-y-1"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-1"
       >
-        <div class="flex items-center space-x-2">
-          <Ubication class="text-white h-6 w-6" />
-          <div>
-            <h2 class="text-white text-sm font-medium">Ubicación:</h2>
-            <h3 class="text-white text-sm">
-              Huayna Capac 713 Urb. Santa Maria
-            </h3>
+        {menuItems.map(({ icon: Icon, title, info }) => (
+          <div class="flex items-center space-x-2">
+            <Icon class="text-white h-6 w-6" />
+            <div>
+              <h2 class="text-white text-sm font-medium">{title}:</h2>
+              <h3 class="text-white text-sm">{info}</h3>
+            </div>
           </div>
-        </div>
-        <div class="flex items-center space-x-2">
-          <Mail class="text-white h-6 w-6" />
-          <div>
-            <h2 class="text-white text-sm font-medium">Correo:</h2>
-            <h3 class="text-white text-sm">plenamentetrujillo@gmail.com</h3>
-          </div>
-        </div>
-        <div class="flex items-center space-x-2">
-          <Phone class="text-white h-6 w-6" />
-          <div>
-            <h2 class="text-white text-sm font-medium">Teléfono:</h2>
-            <h3 class="text-white text-sm">+51 937 562 487</h3>
-          </div>
-        </div>
+        ))}
       </nav>
     </div>
 
-    <!-- Menú completo para pantallas grandes -->
+    <!-- Menú desktop -->
     <nav class="hidden lg:flex space-x-8">
-      <div class="flex items-center space-x-2">
-        <Ubication class="text-white size-8" />
-        <div>
-          <h2 class="text-white text-lg font-medium">Ubicación:</h2>
-          <h3 class="text-white">Huayna Capac 713 Urb. Santa Maria</h3>
-        </div>
-      </div>
-      <div class="w-px h-15 bg-white mx-4"></div>
-      <div class="flex items-center space-x-2">
-        <Mail class="text-white size-8" />
-        <div>
-          <h2 class="text-white text-lg font-medium">Correo:</h2>
-          <h3 class="text-white">plenamentetrujillo@gmail.com</h3>
-        </div>
-      </div>
-      <div class="w-px h-15 bg-white mx-4"></div>
-      <div class="flex items-center space-x-2">
-        <Phone class="text-white size-8" />
-        <div>
-          <h2 class="text-white text-lg font-medium">Teléfono:</h2>
-          <h3 class="text-white">+51 937 562 487</h3>
-        </div>
-      </div>
+      {menuItems.map(({ icon: Icon, title, info }, index) => (
+        <>
+          <div class="flex items-center space-x-2">
+            <Icon class="text-white size-8" />
+            <div>
+              <h2 class="text-white text-lg font-medium">{title}:</h2>
+              <h3 class="text-white">{info}</h3>
+            </div>
+          </div>
+          {index < menuItems.length - 1 && (
+            <div class="w-px h-15 bg-white mx-4" />
+          )}
+        </>
+      ))}
     </nav>
   </div>
 </header>
+
+<style>
+  /* Estilos críticos */
+  [x-cloak] { display: none !important; }
+  
+  /* Optimización de fuentes */
+  @font-face {
+    font-family: 'HeaderFont';
+    font-display: swap;
+    src: local('Arial'), local('Helvetica');
+  }
+</style>

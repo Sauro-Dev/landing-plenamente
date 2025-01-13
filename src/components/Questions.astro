@@ -2,92 +2,190 @@
 import { Image } from "astro:assets";
 import question from "../assets/question.webp";
 
-const faqs = [
+interface FAQ {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+const faqs: FAQ[] = [
   {
+    id: "cita",
     question: "¿Cómo puedo agendar una cita?",
-    answer: "Puedes agendar una cita a través de nuestro número de contacto.",
+    answer: "Puedes agendar una cita a través de nuestro número de contacto."
   },
   {
+    id: "sesion",
     question: "¿Cuánto dura una sesión?",
-    answer:
-      "La sesión de terapia tiene una duración total de 55 minutos, divididos en 50 minutos de trabajo individual con el niño y 5 minutos adicionales destinados a proporcionar retroalimentación y orientación a los padres o tutores.",
+    answer: "La sesión de terapia tiene una duración total de 55 minutos, divididos en 50 minutos de trabajo individual con el niño y 5 minutos adicionales destinados a proporcionar retroalimentación y orientación a los padres o tutores."
   },
   {
+    id: "terapias",
     question: "¿Qué son las Terapias Integrales?",
-    answer:
-      "Las terapias integrales son programas de intervención diseñados para abordar diversos aspectos del desarrollo infantil y juvenil, incluyendo la comunicación, el lenguaje, el aprendizaje, las habilidades de juego, la conducta, la autonomía y la ocupación.",
-  },
+    answer: "Las terapias integrales son programas de intervención diseñados para abordar diversos aspectos del desarrollo infantil y juvenil, incluyendo la comunicación, el lenguaje, el aprendizaje, las habilidades de juego, la conducta, la autonomía y la ocupación."
+  }
 ];
 ---
 
-<section class="py-16">
-  <h1 class="text-3xl sm:text-4xl font-semibold mb-10 text-center">PREGUNTAS FRECUENTES</h1>
+<section class="py-16" aria-labelledby="faq-title">
+  <h1 id="faq-title" class="text-3xl sm:text-4xl font-semibold mb-10 text-center">
+    PREGUNTAS FRECUENTES
+  </h1>
 
-  <div class="container mx-auto flex flex-col lg:flex-row items-center justify-between px-4 sm:px-8 lg:px-12">
-    <!-- Imagen de Pregunta -->
-    <div class="w-full lg:w-1/3 mb-8 lg:mb-0 flex justify-center lg:justify-start">
+  <div class="container mx-auto max-w-7xl flex flex-col lg:flex-row items-start gap-12 px-4">
+    {/* Contenedor de imagen optimizado */}
+    <div class="lg:w-1/3 hidden lg:block lg:sticky lg:top-4">
       <Image
         src={question}
-        alt="Question Icon"
-        quality="max"
+        alt="Ilustración de personas con preguntas"
+        width={300}
+        height={300}
+        quality={85}
         loading="lazy"
-        class="w-2/3 lg:w-full max-w-xs"
+        class="object-contain"
       />
     </div>
 
-    <!-- Preguntas Frecuentes -->
-    <aside class="w-full lg:w-2/3 flex flex-col items-center lg:items-start">
-      <div class="space-y-4 w-full">
-        {
-          faqs.map((faq, index) => (
-            <div class="w-full">
-              <button
-                class="w-full text-left p-4 bg-blue-200 hover:bg-blue-300 focus:outline-none focus:bg-blue-600 rounded-2xl"
-                type="button"
-                data-index={index}
-              >
-                <h2 class="text-lg sm:text-xl font-medium">{faq.question}</h2>
-              </button>
-              <div
-                id={`accordion-content-${index}`}
-                class="accordion-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out text-justify"
-              >
-                <p class="text-gray-700 px-4 py-2">{faq.answer}</p>
-              </div>
-            </div>
-          ))
-        }
+    {/* FAQs con ancho completo en móvil */}
+    <div class="w-full lg:w-2/3">
+      <div class="flex lg:hidden justify-center mb-8">
+        <Image
+          src={question}
+          alt="Ilustración de personas con preguntas"
+          width={200}
+          height={200}
+          quality={85}
+          loading="lazy"
+          class="object-contain"
+        />
       </div>
-    </aside>
+      
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <div class="faq-item rounded-2xl overflow-hidden bg-blue-100">
+            <button
+              class="w-full flex items-center justify-between p-4 bg-blue-200 hover:bg-blue-300 focus:ring-2 focus:ring-blue-400 focus:outline-none transition-colors duration-200"
+              aria-expanded="false"
+              aria-controls={`content-${faq.id}`}
+            >
+              <h2 class="text-lg sm:text-xl font-medium">{faq.question}</h2>
+              <svg 
+                class="w-6 h-6 flex-shrink-0 transform transition-transform duration-200 arrow-icon ml-4"
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round" 
+                  stroke-width="2" 
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <div
+              id={`content-${faq.id}`}
+              class="content-panel overflow-hidden max-h-0 transition-[max-height] duration-300 ease-in-out"
+              aria-hidden="true"
+            >
+              <p class="p-4 text-base sm:text-lg text-gray-700">
+                {faq.answer}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   </div>
 </section>
 
 <script>
-  const buttons = document.querySelectorAll("button[data-index]");
+  class FAQAccordion {
+    private activeItem: HTMLElement | null = null;
 
-  buttons.forEach((button) => {
-    const index = button.getAttribute("data-index");
-    button.addEventListener("click", () => {
-      toggleAccordion(index);
-    });
-  });
+    constructor() {
+      this.init();
+    }
 
-  function toggleAccordion(index: string | null) {
-    const content = document.getElementById(`accordion-content-${index}`);
-
-    if (content instanceof HTMLElement) {
-      const isVisible =
-        content.style.maxHeight && content.style.maxHeight !== "0px";
-
-      document.querySelectorAll(".accordion-content").forEach((el) => {
-        if (el instanceof HTMLElement) {
-          el.style.maxHeight = "0px";
-        }
+    private init(): void {
+      document.querySelectorAll('.faq-item button').forEach(button => {
+        button.addEventListener('click', (e) => this.handleClick(e));
       });
+    }
 
-      if (!isVisible) {
-        content.style.maxHeight = content.scrollHeight + "px";
+    private handleClick(e: Event): void {
+      const button = e.currentTarget as HTMLButtonElement;
+      const item = button.closest('.faq-item') as HTMLElement;
+      const content = item.querySelector('.content-panel') as HTMLElement;
+      const arrow = button.querySelector('.arrow-icon') as SVGElement;
+      
+      if (this.activeItem && this.activeItem !== item) {
+        this.collapse(this.activeItem);
+      }
+
+      if (button.getAttribute('aria-expanded') === 'true') {
+        this.collapse(item);
+        this.activeItem = null;
+      } else {
+        this.expand(item);
+        this.activeItem = item;
       }
     }
+
+    private expand(item: HTMLElement): void {
+      const button = item.querySelector('button') as HTMLButtonElement;
+      const content = item.querySelector('.content-panel') as HTMLElement;
+      const arrow = item.querySelector('.arrow-icon') as SVGElement;
+
+      button.setAttribute('aria-expanded', 'true');
+      content.setAttribute('aria-hidden', 'false');
+      content.style.maxHeight = `${content.scrollHeight}px`;
+      arrow.style.transform = 'rotate(180deg)';
+    }
+
+    private collapse(item: HTMLElement): void {
+      const button = item.querySelector('button') as HTMLButtonElement;
+      const content = item.querySelector('.content-panel') as HTMLElement;
+      const arrow = item.querySelector('.arrow-icon') as SVGElement;
+
+      button.setAttribute('aria-expanded', 'false');
+      content.setAttribute('aria-hidden', 'true');
+      content.style.maxHeight = '0';
+      arrow.style.transform = 'rotate(0deg)';
+    }
   }
+
+  // Inicializar cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    new FAQAccordion();
+  });
 </script>
+
+<style>
+  /* Estilos optimizados */
+  .lg\:sticky {
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .transition-transform,
+    .transition-[max-height],
+    .transition-colors {
+      transition: none !important;
+    }
+  }
+
+  /* Contener imagen */
+  img {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  /* Optimizar rendimiento */
+  .faq-item {
+    contain: content;
+  }
+</style>
