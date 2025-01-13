@@ -9,35 +9,93 @@ interface Props {
 }
 
 const { planName, sessionsPerWeek, sessionsPerMonth, buttonLink } = Astro.props;
+
+// Texto predefinido para mejor mantenimiento
+const texts = {
+  sessionsPerWeek: "sesión(es) por semana",
+  sessionsPerMonth: "sesiones al mes",
+  customSchedule: "Horario personalizado",
+  buttonText: "Saber más"
+};
 ---
 
-<div class="bg-gray-200 p-6 shadow-md rounded-lg flex flex-col justify-between h-full">
-  <h3
-    class="text-2xl font-semibold text-gray-800 mb-4 border-b-2 border-blue-800 pb-2"
-  >
-    {planName}
-  </h3>
-  <ul class="text-left space-y-2 mb-6">
-    <li class="flex items-center">
-      <Check class="mr-2 text-blue-800" />
-      {sessionsPerWeek} sesión(es) por semana
-    </li>
-    <li class="flex items-center">
-      <Check class="mr-2 text-blue-800" />
-      {sessionsPerMonth} sesiones al mes
-    </li>
-    <li class="flex items-center">
-      <Check class="mr-2 text-blue-800" /> Horario personalizado
-    </li>
-  </ul>
-  <div class="flex justify-center mt-4">
-    <a
-      href={buttonLink}
-      class="bg-blue-800 text-white py-2 px-4 rounded-md shadow hover:bg-blue-900 transition-colors duration-300"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Saber más
-    </a>
+<article 
+  class="bg-gray-200 rounded-lg shadow-lg transform transition duration-300 hover:scale-[1.02] h-full"
+>
+  <div class="p-6 flex flex-col h-full">
+    <header class="mb-6">
+      <h3 
+        class="text-2xl font-semibold text-gray-800 pb-2 border-b-2 border-blue-800"
+      >
+        {planName}
+      </h3>
+    </header>
+
+    <ul class="space-y-4 mb-auto" role="list">
+      <li class="flex items-center gap-2">
+        <Check 
+          class="w-5 h-5 text-blue-800 flex-shrink-0" 
+          aria-hidden="true"
+        />
+        <span>{sessionsPerWeek} {texts.sessionsPerWeek}</span>
+      </li>
+      <li class="flex items-center gap-2">
+        <Check 
+          class="w-5 h-5 text-blue-800 flex-shrink-0" 
+          aria-hidden="true"
+        />
+        <span>{sessionsPerMonth} {texts.sessionsPerMonth}</span>
+      </li>
+      <li class="flex items-center gap-2">
+        <Check 
+          class="w-5 h-5 text-blue-800 flex-shrink-0" 
+          aria-hidden="true"
+        />
+        <span>{texts.customSchedule}</span>
+      </li>
+    </ul>
+
+    <footer class="mt-6 text-center">
+      <a 
+        href={buttonLink}
+        class="inline-flex items-center justify-center bg-blue-800 text-white px-6 py-2 rounded-lg transition-colors duration-200 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Saber más sobre el ${planName}`}
+      >
+        {texts.buttonText}
+      </a>
+    </footer>
   </div>
-</div>
+</article>
+
+<style>
+  /* Optimizaciones de rendimiento */
+  @media (prefers-reduced-motion: reduce) {
+    .transform {
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+
+  /* Optimización de hover */
+  .hover\:scale-
+
+\[1\.02\]
+
+ {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  /* Mejorar rendimiento de sombras */
+  .shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Prevenir CLS en el hover */
+  article {
+    transform: translateZ(0);
+  }
+</style>
