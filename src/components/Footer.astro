@@ -10,89 +10,103 @@ import Tiktok from "./icons/Tiktok.astro";
 ---
 
 <footer class="bg-blue-800 text-white py-8 w-full">
-  <div
-    class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-center justify-items-center"
-  >
- <!-- Columna Izquierda: Redes Sociales -->
-<div class="flex flex-col space-y-4">
-  <a 
-    href="https://www.facebook.com/PlenaMenteTrujillo" 
-    target="_blank" 
-    rel="noopener noreferrer" 
-    class="flex items-center space-x-2 hover:opacity-80 transition-opacity"
-  >
-    <Facebook class="text-white size-6" />
-    <div>
-      <h2 class="text-white text-lg font-small">PlenaMenteTrujillo</h2>
-    </div>
-  </a>
+  <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-center justify-items-center">
+    <!-- Columna Izquierda: Redes Sociales -->
+    <div class="flex flex-col space-y-4">
+      <a 
+        href="https://www.facebook.com/PlenaMenteTrujillo" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        aria-label="Facebook de PlenaMente Trujillo"
+        class="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+      >
+        <Facebook class="text-white size-6" />
+        <h2 class="text-white text-lg font-small">PlenaMenteTrujillo</h2>
+      </a>
 
-  <a 
-    href="https://www.instagram.com/plenamentetrujillo" 
-    target="_blank" 
-    rel="noopener noreferrer" 
-    class="flex items-center space-x-2 hover:opacity-80 transition-opacity"
-  >
-    <Instagram class="text-white size-6" />
-    <div>
-      <h2 class="text-white text-lg font-small">plenamentetrujillo</h2>
-    </div>
-  </a>
+      <a 
+        href="https://www.instagram.com/plenamentetrujillo" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        aria-label="Instagram de PlenaMente Trujillo"
+        class="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+      >
+        <Instagram class="text-white size-6" />
+        <h2 class="text-white text-lg font-small">plenamentetrujillo</h2>
+      </a>
 
-  <a 
-    href="https://www.tiktok.com/@plenamentetrujillo" 
-    target="_blank" 
-    rel="noopener noreferrer" 
-    class="flex items-center space-x-2 hover:opacity-80 transition-opacity"
-  >
-    <Tiktok class="text-white size-6" />
-    <div>
-      <h2 class="text-white text-lg font-small">@plenamentetrujillo</h2>
+      <a 
+        href="https://www.tiktok.com/@plenamentetrujillo" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        aria-label="TikTok de PlenaMente Trujillo"
+        class="flex items-center space-x-2 hover:opacity-80 transition-opacity"
+      >
+        <Tiktok class="text-white size-6" />
+        <h2 class="text-white text-lg font-small">@plenamentetrujillo</h2>
+      </a>
     </div>
-  </a>
-</div>
 
     <!-- Columna Central: Logo y Frase -->
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col items-center text-center space-y-2">
       <Image
         src={logo}
-        alt="Logo de PLENAMente"
+        alt="Logo de PLENA-Mente"
         width={80}
         height={80}
         quality={"high"}
         loading="lazy"
       />
       <h2 class="text-lg font-semibold">PLENA-Mente</h2>
-      <p>Psicología Lenguaje</p>
-      <p>Neuro Aprendizaje</p>
+      <p class="text-sm">Psicología Lenguaje</p>
+      <p class="text-sm">Neuro Aprendizaje</p>
     </div>
 
     <!-- Columna Derecha: Contacto y Ubicación -->
-<div class="flex flex-col items-start space-y-4">
-  <div class="flex items-center space-x-2">
-    <Mail class="text-white size-6" />
-    <div>
-      <h2 class="text-white text-lg font-small">Correo:</h2>
-      <h3 class="text-white"><a href="mailto:plenamentetrujillo@gmail.com">plenamentetrujillo@gmail.com</a></h3>
-    </div>
-  </div>
+    <div class="flex flex-col items-start space-y-4">
+      <div class="flex items-center space-x-2">
+        <Mail class="text-white size-6" />
+        <div>
+          <h2 class="text-white text-lg font-small">Correo:</h2>
+          <a 
+            href="mailto:plenamentetrujillo@gmail.com" 
+            class="text-white hover:underline text-sm"
+            aria-label="Enviar correo a plenamentetrujillo@gmail.com"
+          >
+            plenamentetrujillo@gmail.com
+          </a>
+        </div>
+      </div>
 
-  <div class="flex items-center space-x-2">
-    <Phone class="text-white size-6" />
-    <div>
-      <h2 class="text-white text-lg font-small">Teléfono:</h2>
-      <h3 class="text-white"><a href="tel:+51937562487">+51 937 562 487</a></h3>
-    </div>
-  </div>
+      <div class="flex items-center space-x-2">
+        <Phone class="text-white size-6" />
+        <div>
+          <h2 class="text-white text-lg font-small">Teléfono:</h2>
+          <a 
+            href="tel:+51937562487" 
+            class="text-white hover:underline text-sm"
+            aria-label="Llamar al número +51 937 562 487"
+          >
+            +51 937 562 487
+          </a>
+        </div>
+      </div>
 
-  <div class="flex items-center space-x-2">
-    <Ubication class="text-white size-6" />
-    <div>
-      <h2 class="text-white text-lg font-small">Ubicación:</h2>
-      <h3 class="text-white"><a href="https://www.google.com/maps/place/Huayna+Capac+713,+Trujillo+13006/@-8.119933,-79.020635,17z/data=!4m6!3m5!1s0x91ad3d7e153855e9:0x4bf8c0efa53d7300!8m2!3d-8.1199332!4d-79.0206354!16s%2Fg%2F11fqsvyhb0?hl=es-419&entry=ttu&g_ep=EgoyMDI1MDEwOC4wIKXMDSoASAFQAw%3D%3D" target="_blank">Huayna Capac 713 Urb. Santa Maria</a></h3>
+      <div class="flex items-center space-x-2">
+        <Ubication class="text-white size-6" />
+        <div>
+          <h2 class="text-white text-lg font-small">Ubicación:</h2>
+          <a 
+            href="https://www.google.com/maps/place/Huayna+Capac+713,+Trujillo+13006"
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="text-white hover:underline text-sm"
+            aria-label="Abrir ubicación en Google Maps"
+          >
+            Huayna Capac 713 Urb. Santa María
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
   </div>
 </footer>

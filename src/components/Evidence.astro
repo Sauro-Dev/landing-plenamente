@@ -10,33 +10,36 @@ import ev7 from "../assets/ev7.webp";
 import ev8 from "../assets/ev8.webp";
 
 const cards = [
-  { image: ev1 },
-  { image: ev2 },
-  { image: ev3 },
-  { image: ev4 },
-  { image: ev5 },
-  { image: ev6 },
-  { image: ev7 },
-  { image: ev8 },
+  { image: ev1, alt: "Trabajo destacado 1" },
+  { image: ev2, alt: "Trabajo destacado 2" },
+  { image: ev3, alt: "Trabajo destacado 3" },
+  { image: ev4, alt: "Trabajo destacado 4" },
+  { image: ev5, alt: "Trabajo destacado 5" },
+  { image: ev6, alt: "Trabajo destacado 6" },
+  { image: ev7, alt: "Trabajo destacado 7" },
+  { image: ev8, alt: "Trabajo destacado 8" },
 ];
 ---
 
-<h2 class="text-cyan-400 font-medium text-2xl text-center">Nuestro Trabajo</h2>
-<h1 class="font-semibold text-4xl mb-10 text-center">Revisa nuestro trabajo</h1>
+<section class="py-10">
+  <h2 class="text-cyan-400 font-medium text-2xl text-center">Nuestro Trabajo</h2>
+  <h1 class="font-semibold text-4xl mb-10 text-center">Revisa nuestro trabajo</h1>
 
-<div
-  class="max-w-7xl mx-auto w-full mb-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
->
-  {cards.map((card) => (
-    <div class="flex flex-col items-center">
-      <Image
-        src={card.image}
-        alt=""
-        quality="high"
-        loading="lazy"
-        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33.33vw, 25vw"
-        class="w-full h-full object-cover rounded-3xl border-cyan-400 border-4"
-      />
-    </div>
-  ))}
-</div>
+  <div
+    class="max-w-7xl mx-auto w-full mb-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4"
+  >
+    {cards.map((card, index) => (
+      <div class="flex flex-col items-center">
+
+        <Image
+          src={card.image}
+          alt={card.alt}
+          quality="high"
+          loading="lazy"
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33.33vw, 25vw"
+          class="w-full h-full object-cover rounded-3xl border-cyan-400 border-4 transition-transform duration-300 hover:scale-[1.03]"
+        />
+      </div>
+    ))}
+  </div>
+</section>

@@ -1,4 +1,5 @@
 ---
+// Importación del ícono
 import Check from "./icons/Check.astro";
 
 interface Props {
@@ -20,10 +21,10 @@ const texts = {
 ---
 
 <article 
-  class="bg-gray-200 rounded-lg shadow-lg transform transition duration-300 hover:scale-[1.02] h-full"
+  class="bg-gray-200 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-[1.02] h-full sm:max-w-lg lg:max-w-md mx-auto"
 >
   <div class="p-6 flex flex-col h-full">
-    <header class="mb-6">
+    <header class="mb-6 text-center sm:text-left">
       <h3 
         class="text-2xl font-semibold text-gray-800 pb-2 border-b-2 border-blue-800"
       >
@@ -32,33 +33,33 @@ const texts = {
     </header>
 
     <ul class="space-y-4 mb-auto" role="list">
-      <li class="flex items-center gap-2">
+      <li class="flex items-center gap-2 sm:gap-4">
         <Check 
           class="w-5 h-5 text-blue-800 flex-shrink-0" 
           aria-hidden="true"
         />
-        <span>{sessionsPerWeek} {texts.sessionsPerWeek}</span>
+        <span class="text-sm sm:text-base">{sessionsPerWeek} {texts.sessionsPerWeek}</span>
       </li>
-      <li class="flex items-center gap-2">
+      <li class="flex items-center gap-2 sm:gap-4">
         <Check 
           class="w-5 h-5 text-blue-800 flex-shrink-0" 
           aria-hidden="true"
         />
-        <span>{sessionsPerMonth} {texts.sessionsPerMonth}</span>
+        <span class="text-sm sm:text-base">{sessionsPerMonth} {texts.sessionsPerMonth}</span>
       </li>
-      <li class="flex items-center gap-2">
+      <li class="flex items-center gap-2 sm:gap-4">
         <Check 
           class="w-5 h-5 text-blue-800 flex-shrink-0" 
           aria-hidden="true"
         />
-        <span>{texts.customSchedule}</span>
+        <span class="text-sm sm:text-base">{texts.customSchedule}</span>
       </li>
     </ul>
 
     <footer class="mt-6 text-center">
       <a 
         href={buttonLink}
-        class="inline-flex items-center justify-center bg-blue-800 text-white px-6 py-2 rounded-lg transition-colors duration-200 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2"
+        class="inline-flex items-center justify-center bg-blue-800 text-white px-6 py-2 rounded-lg transition-colors duration-200 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2 text-sm sm:text-base"
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Saber más sobre el ${planName}`}
@@ -79,11 +80,7 @@ const texts = {
   }
 
   /* Optimización de hover */
-  .hover\:scale-
-
-\[1\.02\]
-
- {
+  .hover\:scale-[1\.02] {
     will-change: transform;
     backface-visibility: hidden;
   }
