@@ -6,7 +6,6 @@ import Paciencia from "./icons/Paciencia.astro";
 import Honestidad from "./icons/Honestidad.astro";
 import Respeto from "./icons/Respeto.astro";
 
-// Datos de los valores para evitar repetición
 const valores = [
   {
     icon: Compromiso,
@@ -33,7 +32,6 @@ const valores = [
 
 <section class="py-16">
   <div class="container mx-auto max-w-7xl grid gap-12 md:gap-16 md:grid-cols-2 items-center px-4">
-    {/* Columna Izquierda */}
     <div class="space-y-4 text-center md:text-left">
       <h2 class="text-cyan-500 font-bold text-lg">Que ofrecemos</h2>
       <div class="space-y-1">
@@ -57,14 +55,13 @@ const valores = [
       </div>
     </div>
 
-    {/* Columna Derecha: Grid de Valores */}
     <div class="grid grid-cols-2 gap-6 sm:gap-8">
       {valores.map(({ icon: Icon, text, bgColor }) => (
         <div class="flex flex-col items-center text-center">
           <div 
             class={`w-32 h-32 sm:w-48 sm:h-48 ${bgColor} rounded-full flex items-center justify-center shadow-lg transform transition-transform duration-300 hover:scale-105`}
           >
-            <div class="flex items-center justify-center space-x-2">
+            <div class="flex flex-col sm:flex-row items-center justify-center sm:space-x-2 space-y-2 sm:space-y-0 p-4">
               <Icon class="w-8 h-8 sm:w-10 sm:h-10" />
               <span class="text-sm sm:text-xl font-normal text-black">
                 {text}
@@ -78,7 +75,6 @@ const valores = [
 </section>
 
 <style>
-  /* Optimizaciones de rendimiento */
   @media (prefers-reduced-motion: reduce) {
     .transform {
       transform: none !important;
@@ -86,13 +82,11 @@ const valores = [
     }
   }
 
-  /* Optimización de sombras */
   .shadow-lg {
     will-change: transform;
     backface-visibility: hidden;
   }
 
-  /* Prevenir CLS */
   img {
     aspect-ratio: 4/3;
     content-visibility: auto;
