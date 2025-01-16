@@ -1,17 +1,34 @@
 ---
-// Importación del ícono
 import Check from "./icons/Check.astro";
 
-interface Props {
-  planName: string;
-  sessionsPerWeek: string;
-  sessionsPerMonth: string;
-  buttonLink: string;
-}
+const mainPlans = [
+  {
+    planName: "Plan A",
+    sessionsPerWeek: "1",
+    sessionsPerMonth: "4",
+    buttonLink: "https://api.whatsapp.com/send?phone=51937562487&text=Hola,%20me%20gustaría%20saber%20más%20sobre%20el%20Plan%20A"
+  },
+  {
+    planName: "Plan B",
+    sessionsPerWeek: "2",
+    sessionsPerMonth: "8",
+    buttonLink: "https://api.whatsapp.com/send?phone=51937562487&text=Hola,%20me%20gustaría%20saber%20más%20sobre%20el%20Plan%20B"
+  },
+  {
+    planName: "Plan C",
+    sessionsPerWeek: "3",
+    sessionsPerMonth: "12",
+    buttonLink: "https://api.whatsapp.com/send?phone=51937562487&text=Hola,%20me%20gustaría%20saber%20más%20sobre%20el%20Plan%20C"
+  }
+];
 
-const { planName, sessionsPerWeek, sessionsPerMonth, buttonLink } = Astro.props;
+const flexiblePlan = {
+  planName: "Plan Flexible",
+  sessionsPerWeek: "4 a 6",
+  sessionsPerMonth: "16-20-24",
+  buttonLink: "https://api.whatsapp.com/send?phone=51937562487&text=Hola,%20me%20gustaría%20saber%20más%20sobre%20el%20Plan%20Flexible"
+};
 
-// Texto predefinido para mejor mantenimiento
 const texts = {
   sessionsPerWeek: "sesión(es) por semana",
   sessionsPerMonth: "sesiones al mes",
@@ -20,58 +37,108 @@ const texts = {
 };
 ---
 
-<article 
-  class="bg-gray-200 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-[1.02] h-full sm:max-w-lg lg:max-w-md mx-auto"
->
-  <div class="p-6 flex flex-col h-full">
-    <header class="mb-6 text-center sm:text-left">
-      <h3 
-        class="text-2xl font-semibold text-gray-800 pb-2 border-b-2 border-blue-800"
-      >
-        {planName}
-      </h3>
-    </header>
-
-    <ul class="space-y-4 mb-auto" role="list">
-      <li class="flex items-center gap-2 sm:gap-4">
-        <Check 
-          class="w-5 h-5 text-blue-800 flex-shrink-0" 
-          aria-hidden="true"
-        />
-        <span class="text-sm sm:text-base">{sessionsPerWeek} {texts.sessionsPerWeek}</span>
-      </li>
-      <li class="flex items-center gap-2 sm:gap-4">
-        <Check 
-          class="w-5 h-5 text-blue-800 flex-shrink-0" 
-          aria-hidden="true"
-        />
-        <span class="text-sm sm:text-base">{sessionsPerMonth} {texts.sessionsPerMonth}</span>
-      </li>
-      <li class="flex items-center gap-2 sm:gap-4">
-        <Check 
-          class="w-5 h-5 text-blue-800 flex-shrink-0" 
-          aria-hidden="true"
-        />
-        <span class="text-sm sm:text-base">{texts.customSchedule}</span>
-      </li>
-    </ul>
-
-    <footer class="mt-6 text-center">
-      <a 
-        href={buttonLink}
-        class="inline-flex items-center justify-center bg-blue-800 text-white px-6 py-2 rounded-lg transition-colors duration-200 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2 text-sm sm:text-base"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`Saber más sobre el ${planName}`}
-      >
-        {texts.buttonText}
-      </a>
-    </footer>
+<section class="py-16">
+  <div class="text mb-8 text-center">
+    <h3 class="text-cyan-400 font-bold text-xl">Nuestros Planes</h3>
+    <h2 class="text-3xl font-bold text-gray-800">
+      Calidad de servicio a tu alcance
+    </h2>
   </div>
-</article>
+
+  <div class="container mx-auto px-4">
+    <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+      {
+        mainPlans.map((plan) => (
+          <div class="w-full max-w-lg mx-auto">
+            <article 
+              class="bg-gray-200 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-[1.02] h-full sm:max-w-lg lg:max-w-md mx-auto"
+            >
+              <div class="p-6 flex flex-col h-full">
+                <header class="mb-6 text-center sm:text-left">
+                  <h3 class="text-2xl font-semibold text-gray-800 pb-2 border-b-2 border-blue-800">
+                    {plan.planName}
+                  </h3>
+                </header>
+
+                <ul class="space-y-4 mb-auto" role="list">
+                  <li class="flex items-center gap-2 sm:gap-4">
+                    <Check class="w-5 h-5 text-blue-800 flex-shrink-0" aria-hidden="true" />
+                    <span class="text-sm sm:text-base">{plan.sessionsPerWeek} {texts.sessionsPerWeek}</span>
+                  </li>
+                  <li class="flex items-center gap-2 sm:gap-4">
+                    <Check class="w-5 h-5 text-blue-800 flex-shrink-0" aria-hidden="true" />
+                    <span class="text-sm sm:text-base">{plan.sessionsPerMonth} {texts.sessionsPerMonth}</span>
+                  </li>
+                  <li class="flex items-center gap-2 sm:gap-4">
+                    <Check class="w-5 h-5 text-blue-800 flex-shrink-0" aria-hidden="true" />
+                    <span class="text-sm sm:text-base">{texts.customSchedule}</span>
+                  </li>
+                </ul>
+
+                <footer class="mt-6 text-center">
+                  <a 
+                    href={plan.buttonLink}
+                    class="inline-flex items-center justify-center bg-blue-800 text-white px-6 py-2 rounded-lg transition-colors duration-200 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2 text-sm sm:text-base"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Saber más sobre el ${plan.planName}`}
+                  >
+                    {texts.buttonText}
+                  </a>
+                </footer>
+              </div>
+            </article>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-6 flex justify-center max-w-7xl mx-auto">
+      <div class="w-full max-w-lg">
+        <article 
+          class="bg-gray-200 rounded-lg shadow-lg transform transition-transform duration-300 hover:scale-[1.02] h-full sm:max-w-lg lg:max-w-md mx-auto"
+        >
+          <div class="p-6 flex flex-col h-full">
+            <header class="mb-6 text-center sm:text-left">
+              <h3 class="text-2xl font-semibold text-gray-800 pb-2 border-b-2 border-blue-800">
+                {flexiblePlan.planName}
+              </h3>
+            </header>
+
+            <ul class="space-y-4 mb-auto" role="list">
+              <li class="flex items-center gap-2 sm:gap-4">
+                <Check class="w-5 h-5 text-blue-800 flex-shrink-0" aria-hidden="true" />
+                <span class="text-sm sm:text-base">{flexiblePlan.sessionsPerWeek} {texts.sessionsPerWeek}</span>
+              </li>
+              <li class="flex items-center gap-2 sm:gap-4">
+                <Check class="w-5 h-5 text-blue-800 flex-shrink-0" aria-hidden="true" />
+                <span class="text-sm sm:text-base">{flexiblePlan.sessionsPerMonth} {texts.sessionsPerMonth}</span>
+              </li>
+              <li class="flex items-center gap-2 sm:gap-4">
+                <Check class="w-5 h-5 text-blue-800 flex-shrink-0" aria-hidden="true" />
+                <span class="text-sm sm:text-base">{texts.customSchedule}</span>
+              </li>
+            </ul>
+
+            <footer class="mt-6 text-center">
+              <a 
+                href={flexiblePlan.buttonLink}
+                class="inline-flex items-center justify-center bg-blue-800 text-white px-6 py-2 rounded-lg transition-colors duration-200 hover:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2 text-sm sm:text-base"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Saber más sobre el ${flexiblePlan.planName}`}
+              >
+                {texts.buttonText}
+              </a>
+            </footer>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
 
 <style>
-  /* Optimizaciones de rendimiento */
   @media (prefers-reduced-motion: reduce) {
     .transform {
       transform: none !important;
@@ -79,19 +146,16 @@ const texts = {
     }
   }
 
-  /* Optimización de hover */
   .hover\:scale-[1\.02] {
     will-change: transform;
     backface-visibility: hidden;
   }
 
-  /* Mejorar rendimiento de sombras */
   .shadow-lg {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
                 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   }
 
-  /* Prevenir CLS en el hover */
   article {
     transform: translateZ(0);
   }
