@@ -1,8 +1,10 @@
 ---
 import { Image } from "astro:assets";
 import arleen from "../assets/arleen.webp";
-import rosa from "../assets/rosa.webp";
 import ronny from "../assets/ronny.webp";
+import jezabel from "../assets/jezabel.webp";
+import zila from "../assets/zila.webp";
+import cusi from "../assets/cusi.webp";
 
 // Datos estructurados del equipo
 interface TeamMember {
@@ -13,6 +15,27 @@ interface TeamMember {
 }
 
 const teamMembers: TeamMember[] = [
+  {
+    image: jezabel,
+    name: "Jezabel Brigitt Gómez Barreto",
+    role: "Terapeuta",
+    imageAlt: "Terapeuta Jezabel Brigitt"
+  },
+
+  {
+    image: zila,
+    name: "Zila del Pilar Ortiz Reyna",
+    role: "Secretaria",
+    imageAlt: "Terapeuta Zila del Pilar"
+  },
+
+  {
+    image: cusi,
+    name: "Cusi Colloq Valdivieso Lecca",
+    role: "Terapeuta",
+    imageAlt: "Terapeuta Cusi Colloq"
+  },
+
   {
     image: arleen,
     name: "Arleen Alexandra Guerrero Salinas",
@@ -41,15 +64,42 @@ const teamMembers: TeamMember[] = [
       </h3>
     </div>
 
-    {/* Grid de miembros del equipo */}
-    <div
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 sm:gap-10"
-    >
-      {teamMembers.map((member) => (
+    {/* Primera fila: exactamente 3 elementos */}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+      {teamMembers.slice(0, 3).map((member) => (
         <div 
           class="flex flex-col items-center transform transition duration-300 hover:scale-[1.02]"
         >
-          <div class="w-full aspect-[3/4] rounded-3xl overflow-hidden border-4 border-cyan-400">
+          <div class="w-full max-w-[260px] aspect-[3/4] rounded-3xl overflow-hidden border-4 border-cyan-400">
+            <Image
+              src={member.image}
+              alt={member.imageAlt}
+              width={400}
+              height={533}
+              quality={90}
+              loading="eager"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          <div class="mt-4 text-center">
+            <h4 class="text-lg sm:text-xl font-semibold">
+              {member.name}
+            </h4>
+            <p class="text-cyan-400 font-medium text-base sm:text-lg mt-1">
+              {member.role}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Filas adicionales: centradas dinámicamente */}
+    <div class="flex flex-wrap gap-8 sm:gap-10 justify-center mt-10">
+      {teamMembers.slice(3).map((member) => (
+        <div 
+          class="flex flex-col items-center transform transition duration-300 hover:scale-[1.02]"
+        >
+          <div class="w-full max-w-[260px] aspect-[3/4] rounded-3xl overflow-hidden border-4 border-cyan-400">
             <Image
               src={member.image}
               alt={member.imageAlt}
@@ -98,5 +148,29 @@ const teamMembers: TeamMember[] = [
   .transform {
     will-change: transform;
     backface-visibility: hidden;
+  }
+
+  /* Ajuste del diseño */
+  .flex {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .justify-center {
+    justify-content: center;
+  }
+
+  .gap-8 {
+    gap: 2rem;
+  }
+
+  @media (min-width: 640px) {
+    .gap-10 {
+      gap: 2.5rem;
+    }
+  }
+
+  .max-w-[260px] {
+    max-width: 260px;
   }
 </style>
